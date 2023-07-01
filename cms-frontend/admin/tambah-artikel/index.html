@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-5">Tambah Artikel</h1>
+      <form id="form-artikel" class="">
+        <div class="row">
+          <div class="form-group">
+            <label for="judul">Judul Artikel</label>
+            <input
+              type="text"
+              class="form-control"
+              id="judul"
+              placeholder="Judul Artikel"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="form-group">
+            <label for="slug">Slug Artikel</label>
+            <input
+              type="text"
+              class="form-control"
+              id="slug"
+              placeholder="Slug Artikel"
+            />
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="form-group">
+            <label for="konten">Konten Artikel</label>
+            <textarea class="form-control" id="konten" rows="7">
+Artikel ...</textarea
+            >
+          </div>
+        </div>
+        <br />
+        <center>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            id="submit-artikel"
+          >
+            Terbitkan Artikel
+          </button>
+        </center>
+      </form>
+    </div>
+    <footer class="bg-light text-center text-lg-start mt-5">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023 Telkom University:
+        <a class="text-dark" href="https://mdbootstrap.com/">Uhuyyy.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const form = document.getElementById("submit-artikel");
+      form.addEventListener("click", async function () {
+        const judul = document.getElementById("judul").value;
+        const slug = document.getElementById("slug").value;
+        const konten = document.getElementById("konten").value;
+        // tanggal diambil dari tanggal saat ini, menggunakan Date() dan diubah ke format ISO
+        const tanggal = new Date().toISOString().slice(0, 10);
+        // kode dibawah berfungsi untuk mengambil data dari form dan mengubahnya menjadi objek
+        const artikel = { judul, slug, konten, tanggal };
+
+        const res = await fetch("http://localhost:3000/artikel", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(artikel),
+        });
+
+        if (res.ok) {
+          alert("Artikel berhasil ditambahkan");
+          window.location.href = "../dashboard-penulis/index.html";
+        } else {
+          alert("Artikel gagal ditambahkan");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+### POST /komentar
+POST http://localhost:3001/komentar
+content-type: application/json
+
+{
+  "konten": "Ini adalah komentar",
+  "nama": "Saya",
+  "idArtikel": "123456"
+}
+
+### GET /komentar
+GET http://localhost:3001/komentar
+
+### PUT /komentar/:id (Ubah ":id" dengan ID komentar yang ingin Anda ubah)
+PUT http://localhost:3001/komentar/:id
+content-type: application/json
+
+{
+  "konten": "Ini adalah komentar yang diubah",
+  "nama": "Saya",
+  "idArtikel": "123456"
+}
+
+### PUT /komentar/:id (Ubah ":id" dengan ID komentar yang ingin Anda ubah)
+PUT http://localhost:3001/komentar/60ff93a8f6c50e2ebe7bf472
+content-type: application/json
+
+{
+  "konten": "Ini adalah komentar yang diubah",
+  "nama": "Saya",
+  "idArtikel": "654321"
+}
+
+### DELETE /komentar/:id (Ubah ":id" dengan ID komentar yang ingin Anda hapus)
+DELETE http://localhost:3001/komentar/6481ac79fd438ac90a396070
